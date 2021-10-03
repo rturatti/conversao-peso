@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: meupod-peso
+  labels:
+    app: peso
+spec:
+  containers:
+    - name: peso
+      image: rodrigoturatti/conversao-peso
+      ports:
+        - containerPort: 80
