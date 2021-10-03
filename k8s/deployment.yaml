@@ -1,25 +1,45 @@
-# Deployment da conversão de Peso
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: meupod-peso
-  labels:
-    app: peso
+  name: web
 spec:
-  containers:
-    - name: peso
-      image: rodrigoturatti/conversao-peso:latest
-      ports:
-        - containerPort: 80
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+        - name: web
+          image: rodrigoturatti/conversao-peso:latest
+          ports:
+            - containerPort: 80
+
+# Deployment da conversão de Peso
+#apiVersion: v1
+#kind: Pod
+#metadata:
+#  name: meupod-peso
+#  labels:
+#    app: peso
+#spec:
+#  containers:
+#    - name: peso
+#      image: rodrigoturatti/conversao-peso:latest
+#      ports:
+#        - containerPort: 80
 ---
 # Service do MongoDB
 apiVersion: v1
 kind: Service
 metadata:
-  name: peso
+  name: web
 spec:
   selector:
-    app: peso
+    app: web
   ports:
     - port: 80
   type: LoadBalancer
