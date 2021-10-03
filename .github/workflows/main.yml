@@ -41,4 +41,4 @@ jobs:
         with:
           images: rodrigoturatti/conversao-peso:${{ github.run_number }}
           manifests: |
-            meupod-peso.yaml
+            k8s/deployment.yaml
